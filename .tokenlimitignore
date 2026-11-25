@@ -1,0 +1,14 @@
+# Moved from the standalone kiwi-djs repo. Split separately rather than in a
+# history-preserving move commit.
+packages/kiwi-djs/scripts/dataset-fixes.ts
+packages/kiwi-djs/scripts/loop.ts
+packages/kiwi-djs/src/app/djs/*/page.tsx
+packages/kiwi-djs/src/app/favicon.ico
+packages/kiwi-djs/src/data/snapshot.json
+packages/kiwi-djs/src/lib/scrapers/discover.ts
+packages/kiwi-djs/src/lib/scrapers/enrich.ts
+
+# Generated datasets.
+packages/kiwi-fests/src/data/snapshot.json
+packages/kiwi-fests/src/data/seed/festivals-seed.json
+packages/*/pnpm-lock.yaml
