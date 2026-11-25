@@ -1,0 +1,28 @@
+{
+  "name": "nz-djs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Monorepo for the Kiwi DJs and Kiwi Fests directories.",
+  "engines": {
+    "node": ">=22.22.2"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage",
+    "test:e2e": "turbo run test:e2e",
+    "format": "turbo run format",
+    "format:check": "turbo run format:check",
+    "check": "turbo run check",
+    "check:kiwi-djs": "pnpm --filter kiwi-djs check",
+    "check:kiwi-fests": "pnpm --filter kiwi-fests check",
+    "clean": "turbo run clean"
+  },
+  "devDependencies": {
+    "turbo": "2.11.13"
+  }
+}
