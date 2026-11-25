@@ -15,7 +15,8 @@ pnpm install
 pnpm dev
 ```
 
-`pnpm dev` starts both apps. Each package reads its own `.env.local`; copy
+`pnpm dev` starts both apps: Kiwi DJs on <http://localhost:3000> and Kiwi
+Fests on <http://localhost:3001>. Each package reads its own `.env.local`; copy
 `packages/<name>/.env.example` before running a package that needs a database.
 
 ## Commands

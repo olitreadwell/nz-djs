@@ -46,7 +46,7 @@ daily refresh, wired in from day one.
 
 ```bash
 pnpm install
-pnpm run dev        # http://localhost:3000
+pnpm run dev        # http://localhost:3001
 ```
 
 ## Commands
