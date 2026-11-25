@@ -1,0 +1,46 @@
+name: Security
+
+on:
+  push:
+    # Bot branches get the same coverage from their pull_request run. Running
+    # both legs doubled the scan on every dependabot and renovate push.
+    branches:
+      - main
+      - master
+      - dev
+      - development
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  security:
+    # Audit and secrets scan ran as two jobs. Each billed a minute of runner
+    # time minimum, so they share one job now.
+    name: Security checks (audit and secrets)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+        if: hashFiles('pnpm-lock.yaml') != ''
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: ".nvmrc"
+          cache: ${{ hashFiles('pnpm-lock.yaml') != '' && 'pnpm' || (hashFiles('package-lock.json') != '' && 'npm' || '') }}
+      - name: Install dependencies and audit
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            pnpm install --frozen-lockfile
+            pnpm audit --audit-level=high
+          else
+            npm ci
+            npm audit --audit-level=high
+          fi
+      - name: Scan for committed secrets
+        run: bash scripts/security-checks.sh
